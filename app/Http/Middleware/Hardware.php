@@ -21,9 +21,16 @@ class Hardware
 
         if (is_null($user))
         {
-            return response()->json([
-                'message' => 'Injection does not allowed, potential illegal access detected.',
-            ], 403);
+            if ($request->expectsJson())
+            {
+                return response()->json([
+                    'message' => 'Injection does not allowed, potential illegal access detected.',
+                ], 403);
+            }
+            else
+            {
+                abort(403);
+            }
         }
 
         return $next($request);
