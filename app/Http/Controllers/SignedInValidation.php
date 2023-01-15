@@ -74,7 +74,7 @@ class SignedInValidation extends Controller
     */
     public function allow_injection(Request $request)
     {
-        $user = owner::where('hardware_uuid', $request->hardware_uuid)->first();
+        $user = owner::where('hardware_uuid', $request->hardware)->first();
 
         if (is_null($user)) return response()->json(['message' => 'Injection does not allowed, potential illegal access detected.']);
 
