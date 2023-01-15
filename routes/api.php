@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/v1/injection/access', [SignedInValidation::class, 'store_access']);
+Route::post('/v1/injection/grants-access', [SignedInValidation::class, 'store_access']);
 
 Route::group(['middleware' => 'hardware'], function() 
 {
