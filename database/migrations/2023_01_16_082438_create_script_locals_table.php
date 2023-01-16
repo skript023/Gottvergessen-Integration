@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSignaturesTable extends Migration
+class CreateScriptLocalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSignaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('signatures', function (Blueprint $table) {
+        Schema::create('script_locals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('signature');
+            $table->integer('index');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateSignaturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('signatures');
+        Schema::dropIfExists('script_locals');
     }
 }
