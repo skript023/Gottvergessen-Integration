@@ -42,23 +42,18 @@ class SignedInValidation extends Controller
         try 
         {
             owner::updateOrCreate([
-                'injection' => $injection_code,
-                'hardware_uuid' => $request->hardware_uuid,
-                'injection' => $request->injection,
-                'computer_name' => $request->computer_name,
-                'role' => $request->role,
-                'token' => $request->token
+                'username' => $request->username,
             ], $data);
 
             return response()->json([
-                'message' => 'success'
+                'message' => 'Integration success, attempting DLL injection'
             ]);
         } 
         catch (\Throwable $th) 
         {
             return response()->json([
                 'message' => 'Error : '.$th
-            ]);
+            ], 500);
         }
     }
 

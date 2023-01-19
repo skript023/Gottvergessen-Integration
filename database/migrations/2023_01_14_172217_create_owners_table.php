@@ -19,8 +19,7 @@ class CreateOwnersTable extends Migration
             $table->unsignedInteger('injection');
             $table->string('hardware_uuid');
             $table->string('computer_name');
-            $table->string('target_process');
-            $table->string('role');
+            $table->string('role')->nullable();
             $table->string('token');
             $table->timestamps();
         });
