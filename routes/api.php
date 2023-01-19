@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\SignedInValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/v1/injection/grants-access', [SignedInValidation::class, 'store_access']);
+Route::get('/v1/injection/delete-access', [SignedInValidation::class, 'delete_old']);
+Route::get('/v1/scheduled', [Controller::class, 'scheduled']);
 
 Route::group(['middleware' => 'hardware'], function() 
 {

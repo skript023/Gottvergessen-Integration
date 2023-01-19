@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class SignedInValidation extends Controller
 {
@@ -77,5 +78,16 @@ class SignedInValidation extends Controller
             'message' => 'Injection success, enjoy your game.',
             'data' => $user
         ]);
+    }
+
+    public function delete_old(Request $request)
+    {
+        $stale_posts = owner::where('created_at', '<', now()->subDay())->get();
+        foreach ($stale_posts as $post) 
+        {
+            $post->delete();
+        }
+
+        return response()->json($stale_posts);
     }
 }

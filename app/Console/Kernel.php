@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
             {
                 $post->delete();
             }
-        })->daily();
+        })->everyMinute();
     }
 
     /**
